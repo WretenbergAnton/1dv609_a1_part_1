@@ -11,9 +11,9 @@ class SwedishSocialSecurityNumber {
 
         const trimmedSS = stringInput.trim(); 
 
-        //if (helper.isCorrectLength(trimmedSS) == false) {
-        //    throw new Error("To short, must be 11 characters");
-        //}
+        if (helper.isCorrectLength(trimmedSS) == false) {
+            throw new Error("To short, must be 11 characters");
+        }
         if (helper.isCorrectFormat(trimmedSS) === false) {
             throw new Error("Incorrect format, must be: YYMMDD-XXXX");
         }
@@ -32,7 +32,7 @@ class SwedishSocialSecurityNumber {
     }
 
     getYear() {
-        return this.#ssn.substring(0, 2); //YYMMDD-XXXX
+        return this.#ssn.substring(1, 3); //YYMMDD-XXXX <-BUG
     }
 
     getMonth() {
