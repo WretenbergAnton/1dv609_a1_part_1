@@ -39,8 +39,11 @@ js/build/
 js/practice/practice_write_run_tests/tests/sol.test.js
 js/practice/practice_write_mocked_tests/tests/sol.test.js
 
-java/unit_tests/.gradle/
-java/unit_tests/build/
+# Java specifics
+java/practice/practice_write_mocked_tests/.gradle/
+java/practice/practice_write_run_tests/.gradle/
+java/practice/practice_write_mocked_tests/build/
+java/practice/practice_write_run_tests/build/
 java/examinations/.gradle/
 java/examinations/build/
 
