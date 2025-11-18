@@ -3,8 +3,8 @@
 // import { Password } from '../src/BugDoesNotHash'
 //import { Password } from '../src/BugDoesNotTrim'
 //import { Password } from '../src/BugisPasswordAlwaysSame'
-import { Password } from '../src/BugMissingNumberCheck'
-// import { Password } from '../src/BugMissingPasswordCheck'
+//import { Password } from '../src/BugMissingNumberCheck'
+import { Password } from '../src/BugMissingPasswordCheck'
 // import { Password } from '../src/BugNeverContainsNumbers'
 // import { Password } from '../src/BugToShortPassword'
 // import { Password } from '../src/BugVeryShort'
@@ -33,8 +33,12 @@ describe('Password class, test suite', () => {
         expect(newPassword.isPasswordSame(password1)).toBe(false)
     })
 
-    test('Ceck if number is required in a password', () => {
+    test('Check if number is required in a password', () => {
         expect(() => new Password('passwordwithnonumbers')).toThrow('No number found')        
+    })
+
+    test('Check if a password needs to be at least 12 long', () => {
+        expect(() => new Password('shortpw')).toThrow("Too short password")
     })
 
     //Add your tests here
