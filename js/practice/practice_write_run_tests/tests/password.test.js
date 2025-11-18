@@ -7,10 +7,10 @@
 //import { Password } from '../src/BugMissingPasswordCheck'
 //import { Password } from '../src/BugNeverContainsNumbers'
 //import { Password } from '../src/BugToShortPassword'
- import { Password } from '../src/BugVeryShort'
-// import { Password } from '../src/BugWrongHashingAlgorithm'
+//import { Password } from '../src/BugVeryShort'
+//import { Password } from '../src/BugWrongHashingAlgorithm'
 // import { Password } from '../src/BugWrongMessage'
-//import { Password } from '../src/Correct'
+import { Password } from '../src/Correct'
 
 describe('Password class, test suite', () => {
     //put constants here to increase readability
@@ -48,5 +48,11 @@ describe('Password class, test suite', () => {
     test('Check if password is below 6 charachters', () => {
         expect(() => new Password('pw12')).toThrow('Too short password')
     })
+
+    test('Check if the hashingalgoritm is giving higher numbers then 5', () => {
+        expect(password1).tobeGreatherThen(4)
+    })
+
+    test('Check if the Error message is correct', ())
     //Add your tests here
 });
