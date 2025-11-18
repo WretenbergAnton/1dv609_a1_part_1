@@ -9,8 +9,8 @@
 //import { Password } from '../src/BugToShortPassword'
 //import { Password } from '../src/BugVeryShort'
 //import { Password } from '../src/BugWrongHashingAlgorithm'
-// import { Password } from '../src/BugWrongMessage'
-import { Password } from '../src/Correct'
+ import { Password } from '../src/BugWrongMessage'
+//import { Password } from '../src/Correct'
 
 describe('Password class, test suite', () => {
     //put constants here to increase readability
@@ -50,9 +50,12 @@ describe('Password class, test suite', () => {
     })
 
     test('Check if the hashingalgoritm is giving higher numbers then 5', () => {
-        expect(password1).tobeGreatherThen(4)
+        const hash = password1.getPasswordHash()
+        expect(hash).toBeGreaterThan(4)
     })
 
-    test('Check if the Error message is correct', ())
+    test('Check if the Error message is "Too short password"', () => {
+        expect(() => new Password('asklfjd')).toThrow('Too short password')
+    })
     //Add your tests here
 });
