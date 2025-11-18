@@ -4,13 +4,13 @@
 //import { Password } from '../src/BugDoesNotTrim'
 //import { Password } from '../src/BugisPasswordAlwaysSame'
 //import { Password } from '../src/BugMissingNumberCheck'
-import { Password } from '../src/BugMissingPasswordCheck'
-// import { Password } from '../src/BugNeverContainsNumbers'
-// import { Password } from '../src/BugToShortPassword'
+//import { Password } from '../src/BugMissingPasswordCheck'
+//import { Password } from '../src/BugNeverContainsNumbers'
+//import { Password } from '../src/BugToShortPassword'
 // import { Password } from '../src/BugVeryShort'
 // import { Password } from '../src/BugWrongHashingAlgorithm'
 // import { Password } from '../src/BugWrongMessage'
-//import { Password } from '../src/Correct'
+import { Password } from '../src/Correct'
 
 describe('Password class, test suite', () => {
     //put constants here to increase readability
@@ -38,8 +38,14 @@ describe('Password class, test suite', () => {
     })
 
     test('Check if a password needs to be at least 12 long', () => {
-        expect(() => new Password('shortpw')).toThrow("Too short password")
+        expect(() => new Password('shortpw8')).toThrow("Too short password")
     })
+
+    test('Check if password is below 11 charachters', () => {
+        expect(() => new Password('password123')).toThrow('Too short password')
+    })
+
+
 
     //Add your tests here
 });
