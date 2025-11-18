@@ -1,8 +1,8 @@
 // Select one of the Password versions to test
 
 // import { Password } from '../src/BugDoesNotHash'
-import { Password } from '../src/BugDoesNotTrim'
-//import { Password } from '../src/BugisPasswordAlwaysSame'
+//import { Password } from '../src/BugDoesNotTrim'
+import { Password } from '../src/BugisPasswordAlwaysSame'
 // import { Password } from '../src/BugMissingNumberCheck'
 // import { Password } from '../src/BugMissingPasswordCheck'
 // import { Password } from '../src/BugNeverContainsNumbers'
@@ -26,6 +26,11 @@ describe('Password class, test suite', () => {
     test('check if the trim works', () => {
         const pwWithSpaces = new Password(' mysecurepassword123 ')
         expect(pwWithSpaces.isPasswordSame(password1)).toBe(true)
+    })
+
+    test('Check if the password is allways the same', () => {
+        const newPassword = new Password('wrongpassword123')
+        expect(newPassword.isPasswordSame(password1)).toBe(false)
     })
 
     //Add your tests here
