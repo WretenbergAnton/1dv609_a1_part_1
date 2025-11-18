@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-  "test": "vitest",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "t1": "node --experimental-vm-modules node_modules/jest/bin/jest.js practice/practice_write_run_test",
     "t2": "node --experimental-vm-modules node_modules/jest/bin/jest.js practice/practice_write_mocked_tests"
   },

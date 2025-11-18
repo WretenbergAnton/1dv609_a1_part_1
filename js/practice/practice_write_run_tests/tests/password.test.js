@@ -1,9 +1,8 @@
-import { describe, it, expect} from 'vitest'
 // Select one of the Password versions to test
 
 // import { Password } from '../src/BugDoesNotHash'
-//import { Password } from '../src/BugDoesNotTrim'
-// import { Password } from '../src/BugisPasswordAlwaysSame'
+import { Password } from '../src/BugDoesNotTrim'
+//import { Password } from '../src/BugisPasswordAlwaysSame'
 // import { Password } from '../src/BugMissingNumberCheck'
 // import { Password } from '../src/BugMissingPasswordCheck'
 // import { Password } from '../src/BugNeverContainsNumbers'
@@ -11,17 +10,22 @@ import { describe, it, expect} from 'vitest'
 // import { Password } from '../src/BugVeryShort'
 // import { Password } from '../src/BugWrongHashingAlgorithm'
 // import { Password } from '../src/BugWrongMessage'
-import { Password } from '../src/Correct'
+//import { Password } from '../src/Correct'
 
 describe('Password class, test suite', () => {
     //put constants here to increase readability
-    const myPassword = 'mysecurepassword123'
-    const password = new Password(myPassword)
+    const pw1 = 'mysecurepassword123'
+    const password1 = new Password(pw1)
 
-    it('Check if the password is hashed', () => {
-        const hashedPassword = password.getPasswordHash()
+    test('Check if the password is hashed', () => {
+        const hashedPassword = password1.getPasswordHash()
 
-        expect(hashedPassword).not.toBe(myPassword)
+        expect(hashedPassword).not.toBe(pw1)
+    })
+
+    test('check if the trim works', () => {
+        const pwWithSpaces = new Password(' mysecurepassword123 ')
+        expect(pwWithSpaces.isPasswordSame(password1)).toBe(true)
     })
 
     //Add your tests here
