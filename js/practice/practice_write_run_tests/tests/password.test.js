@@ -2,8 +2,8 @@
 
 // import { Password } from '../src/BugDoesNotHash'
 //import { Password } from '../src/BugDoesNotTrim'
-import { Password } from '../src/BugisPasswordAlwaysSame'
-// import { Password } from '../src/BugMissingNumberCheck'
+//import { Password } from '../src/BugisPasswordAlwaysSame'
+import { Password } from '../src/BugMissingNumberCheck'
 // import { Password } from '../src/BugMissingPasswordCheck'
 // import { Password } from '../src/BugNeverContainsNumbers'
 // import { Password } from '../src/BugToShortPassword'
@@ -31,6 +31,10 @@ describe('Password class, test suite', () => {
     test('Check if the password is allways the same', () => {
         const newPassword = new Password('wrongpassword123')
         expect(newPassword.isPasswordSame(password1)).toBe(false)
+    })
+
+    test('Ceck if number is required in a password', () => {
+        expect(() => new Password('passwordwithnonumbers')).toThrow('No number found')        
     })
 
     //Add your tests here
