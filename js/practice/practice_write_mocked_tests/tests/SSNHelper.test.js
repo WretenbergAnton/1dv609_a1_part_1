@@ -1,12 +1,22 @@
-import { SSNHelper } from '../src/correct/SSNHelper'; 
+//import { SSNHelper } from '../src/correct/SSNHelper';
 //import { SSNHelper } from '../src/bugs/BuggySSNHelperAllowDayUpTo30'; 
-//import { SSNHelper } from '../src/bugs/BuggySSNHelperAllowMonth0'; 
+//import { SSNHelper } from '../src/bugs/BuggySSNHelperAllowMonth0';
+import { SSNHelper } from '../src/bugs/BuggySSNHelperIncorrectFormat';
+
 
 
 
 describe('SSNHelpe Tests', () => {
 
     const helper = new SSNHelper()
+
+    const correctFormat = '123456-1234'
+    const invalidSSNs = [
+        '1234567890',
+        '123456-123',
+        '123456-12345',
+        ''
+    ]
 
     test('SSNHelper Allow Day From 1-31 Days', () => {
         for(let days = 1; days <= 31; days++) {
@@ -26,6 +36,19 @@ describe('SSNHelpe Tests', () => {
             expect(isValid).toBeTruthy()
         }
     })
+
+    test('The Format Of An SSN Should Be 123456-1234', () => {
+        const isValid = helper.isCorrectFormat(correctFormat)
+        expect(isValid).toBeTruthy()
+    })
+
+    test('The Format Of An SSN Should Allways Be 123456-1234 If Not Throw Error', () => {
+        invalidSSNs.forEach(ssn => {
+            const isValid = helper.isCorrectFormat(ssn)
+            expect(isValid).toBeFalsy()
+        })
+    })
+
 
 
     //Add your tests here
