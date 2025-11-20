@@ -1,15 +1,32 @@
 import { SSNHelper } from '../src/correct/SSNHelper'; 
+//import { SSNHelper } from '../src/bugs/BuggySSNHelperAllowDayUpTo30'; 
+//import { SSNHelper } from '../src/bugs/BuggySSNHelperAllowMonth0'; 
 
 
 
 describe('SSNHelpe Tests', () => {
 
-    test('SSNHelper_Allow_Day_From_1-31_Days', () => {
-        const helper = new SSNHelper()
+    const helper = new SSNHelper()
 
-        expect(helper.isValidDay('1')).toBe(true)
-        expect(helper.isValidDay('31')).toBe(true)
+    test('SSNHelper Allow Day From 1-31 Days', () => {
+        for(let days = 1; days <= 31; days++) {
+            const isValid = helper.isValidDay(days)
+            expect(isValid).toBeTruthy()
+        }
     })
+
+    test('SSNHelper Do Not Allow Month To Be 0', () => {
+        const isNotValid = helper.isValidMonth(0)
+        expect(isNotValid).toBeFalsy()
+    })
+
+    test('SSNHelper Allow Month Between 1-12', () => {
+        for(let months = 1; months <= 12; months++) {
+            const isValid = helper.isValidMonth(months)
+            expect(isValid).toBeTruthy()
+        }
+    })
+
 
     //Add your tests here
 });
