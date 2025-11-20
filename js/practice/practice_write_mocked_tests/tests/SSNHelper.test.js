@@ -4,9 +4,12 @@ import { SSNHelper } from '../src/correct/SSNHelper';
 
 describe('SSNHelpe Tests', () => {
 
-    test('replace this test with one of your own', () => {
-        expect(true).toBe(true);
-    });
+    test('SSNHelper_Allow_Day_From_1-31_Days', () => {
+        const helper = new SSNHelper()
+
+        expect(helper.isValidDay('1')).toBe(true)
+        expect(helper.isValidDay('31')).toBe(true)
+    })
 
     //Add your tests here
 });

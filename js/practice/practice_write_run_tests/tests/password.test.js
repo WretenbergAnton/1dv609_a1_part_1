@@ -53,12 +53,17 @@ describe('Password class, test suite', () => {
         expect(() => new Password('pw12')).toThrow('Too short password')
     })
 
-    test('Check if the hashingalgoritm is giving higher numbers then 5', () => {
-        const hash = password1.getPasswordHash()
-        expect(hash).toBeGreaterThan(4)
+    test('different passwords must generate different hashes', () => {
+        const password2 = new Password('anotherpassword123')
+
+        expect(password1.getPasswordHash()).not.toBe(password2.getPasswordHash())
     })
 
     test('Check if the Error message is "Too short password"', () => {
         expect(() => new Password('asklfjd')).toThrow('Too short password')
+    })
+
+    test('Check if using wrong password will return an Error message', () => {
+        expect(() => password1.isPasswordSame('wrongPw')).toThrow('Invalid argument')
     })
 });
