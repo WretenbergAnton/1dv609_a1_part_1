@@ -71,4 +71,12 @@ describe("SwedishSocialSecurityNumber Tests", () => {
     }).toThrow("Invalid month in SSN")
   })
 
+  test('shold throw when incorect month is inputed', () => {
+    mockHelper.isValidMonth.mockReturnValue(false)
+
+    expect(() => {
+        new SwedishSocialSecurityNumber(wrongFormat, mockHelper)
+    }).toThrow("Invalid month in SSN")
+  })
+
 })
