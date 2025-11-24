@@ -10,7 +10,8 @@ import { SwedishSocialSecurityNumber } from "../src/correct/SwedishSocialSecurit
 describe("SwedishSocialSecurityNumber Tests", () => {
 
   const correctFormat = "890201-3286"
-  const correctFormatWithSpaces = " 890201-3286"
+  const correctFormat = "890201-3286"
+  const wrongFormat = " 890202341-32286 "
 
   let mockHelper
   
@@ -35,9 +36,9 @@ describe("SwedishSocialSecurityNumber Tests", () => {
   })
 
   test('should trim the whitespaces', () => {
-    const SSSN = new SwedishSocialSecurityNumber(correctFormatWithSpaces, mockHelper)
+    const result = new SwedishSocialSecurityNumber(correctFormatWithSpaces, mockHelper)
 
-    expect(SSSN.getYear()).toBe('89')
+    expect(result.getSerialNumber()).toBe('3286')
   })
 
   test('should not throw error when Luhn validation fails', () => {
@@ -48,5 +49,10 @@ describe("SwedishSocialSecurityNumber Tests", () => {
     }).toThrow("Invalid SSN according to Luhn's algorithm")
   })
 
+  test('should throw when incorect year is outpute', () => {
+    const result = new SwedishSocialSecurityNumber(correctFormat, mockHelper)
+
+    expect(result.getYear()).toBe('89')
+  })
 
 })
