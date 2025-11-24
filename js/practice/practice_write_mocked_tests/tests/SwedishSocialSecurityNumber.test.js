@@ -1,4 +1,4 @@
-import { expect, jest } from '@jest/globals'
+import { expect, jest, test } from '@jest/globals'
 
 
 import { SwedishSocialSecurityNumber } from "../src/correct/SwedishSocialSecurityNumber"
@@ -55,7 +55,7 @@ describe("SwedishSocialSecurityNumber Tests", () => {
     expect(result.getYear()).toBe('89')
   })
 
-  test('shold throw when incorect format is inputed', () => {
+  test('should throw when incorect format is inputed', () => {
     mockHelper.isCorrectFormat.mockReturnValue(false)
 
     expect(() => {
@@ -63,6 +63,12 @@ describe("SwedishSocialSecurityNumber Tests", () => {
     }).toThrow("Incorrect format, must be: YYMMDD-XXXX")
   })
 
-  
+  test('should throw when incorect day is inputed', () => {
+    mockHelper.isValidDay.mockReturnValue(false)
+
+    expect(() => {
+        new SwedishSocialSecurityNumber(wrongFormat, mockHelper)
+    }).toThrow("Invalid month in SSN")
+  })
 
 })
