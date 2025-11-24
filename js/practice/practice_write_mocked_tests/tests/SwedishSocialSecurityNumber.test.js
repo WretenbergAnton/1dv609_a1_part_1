@@ -10,7 +10,7 @@ import { SwedishSocialSecurityNumber } from "../src/correct/SwedishSocialSecurit
 describe("SwedishSocialSecurityNumber Tests", () => {
 
   const correctFormat = "890201-3286"
-  const correctFormat = "890201-3286"
+  const correctFormatWithSpaces = "890201-3286"
   const wrongFormat = " 890202341-32286 "
 
   let mockHelper
@@ -54,5 +54,15 @@ describe("SwedishSocialSecurityNumber Tests", () => {
 
     expect(result.getYear()).toBe('89')
   })
+
+  test('shold throw when incorect format is inputed', () => {
+    mockHelper.isCorrectFormat.mockReturnValue(false)
+
+    expect(() => {
+        new SwedishSocialSecurityNumber(wrongFormat, mockHelper)
+    }).toThrow("Incorrect format, must be: YYMMDD-XXXX")
+  })
+
+  
 
 })
