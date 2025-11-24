@@ -37,6 +37,10 @@ describe("SwedishSocialSecurityNumber Tests", () => {
     }).toThrow("To short, must be 11 characters")
   })
 
+  test('should trim the whitespaces', () => {
+    const SSSN = new SwedishSocialSecurityNumber(correctFormatWithSpaces, mockHelper)
 
+    expect(SSSN.getYear()).toBe('89')
+  })
 
 })
