@@ -1,13 +1,13 @@
 // Select one of the Password versions to test
 
-import { Password } from '../src/Correct'
+//import { Password } from '../src/Correct'
 
 //import { Password } from '../src/BugDoesNotHash'
 //import { Password } from '../src/BugDoesNotTrim'
 //import { Password } from '../src/BugisPasswordAlwaysSame'
 //import { Password } from '../src/BugMissingNumberCheck'
 //import { Password } from '../src/BugMissingPasswordCheck'
-//import { Password } from '../src/BugNeverContainsNumbers'
+import { Password } from '../src/BugNeverContainsNumbers'
 //import { Password } from '../src/BugToShortPassword'
 //import { Password } from '../src/BugVeryShort'
 //import { Password } from '../src/BugWrongHashingAlgorithm'
@@ -16,22 +16,26 @@ import { Password } from '../src/Correct'
 describe('Password class, test suite', () => {
     // Constants for readability
     const pw1 = 'mysecurepassword123'
-    const password1 = new Password(pw1)
 
     test('should hash the password', () => {
-        const hashedPassword = password1.getPasswordHash()
+        const firstPassword = new Password(pw1)
+
+        const hashedPassword = firstPassword.getPasswordHash()
         expect(hashedPassword).not.toBe(pw1)
     })
 
     test('should trim whitespace from password', () => {
+        const firstPassword = new Password(pw1)
         const pwWithSpaces = new Password(' mysecurepassword123 ')
-        expect(pwWithSpaces.isPasswordSame(password1)).toBe(true)
+
+        expect(pwWithSpaces.isPasswordSame(firstPassword)).toBeTruthy()
     })
 
     test('should return false when comparing different passwords', () => {
+        const firstPassword = new Password(pw1)
         const secondPassword = new Password('secondpw12345')
 
-        const arePasswordsTheSame = password1.isPasswordSame(secondPassword)
+        const arePasswordsTheSame = firstPassword.isPasswordSame(secondPassword)
 
         expect(arePasswordsTheSame).toBeFalsy()
     })
@@ -67,6 +71,7 @@ describe('Password class, test suite', () => {
     })
 
     test('should throw "Invalid argument" when comparing with non-Password object', () => {
-        expect(() => password1.isPasswordSame('wrongPw')).toThrow('Invalid argument')
+        const firstPassword = new Password(pw1)
+        expect(() => firstPassword.isPasswordSame('wrongPw')).toThrow('Invalid argument')
     })
 });
